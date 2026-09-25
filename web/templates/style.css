@@ -169,7 +169,7 @@ a.loginbutton:focus-visible {
   }
 }
 
-.navtitle{
+.nav-title{
   display: inline-block;
 }
 
@@ -374,7 +374,7 @@ img {
   transform: translate(-50%, -50%);
 }
 
-.mydir {
+.my-dir {
   color: #80f;
   font-weight: bold;
 }
@@ -409,8 +409,8 @@ a:focus {
   cursor: pointer;
   text-shadow: 0 0 0.1px currentColor, 0 0 0.1px currentColor;  /* imitate boldness with shadow to avoid width change when hovering */
 }
-.navtitle a:hover,
-.navtitle a:focus,
+.nav-title a:hover,
+.nav-title a:focus,
 p    a:hover,
 p    a:focus,
 li   a:hover,
