@@ -49,10 +49,8 @@
 
 header {
   padding: 10px;
-  background: #24FF24;
   background-color: #242424;
   color: white;
-  border-color: #f00;
   opacity: 0.8;
 }
 
@@ -93,7 +91,6 @@ header form > div {
    line up exactly; only padding and colours differ */
 .login-text,
 .login-button {
-  box-sizing: border-box;
   height: var(--control-height);
   min-width: 7em;
   font-family: inherit;
@@ -410,24 +407,21 @@ li a {
 
 a:hover,
 a:focus {
-  cursor: pointer;
   text-shadow: 0 0 0.1px currentcolor, 0 0 0.1px currentcolor;  /* imitate boldness with shadow to avoid width change when hovering */
 }
 
 a:active {
   text-decoration-color: #44f;
   color: #44f;
-  cursor: pointer;
 }
 
 a:visited {
   color: #006;
 }
 
-.footer a {
-  color: #555;
-  font-size: small;
-  font-weight: normal;
+/* shared "pill" look for footer links and nav-bar cells */
+.footer a,
+.nav-el-2 {
   padding: 0.4em 0.2em;
   text-align: center;
   display: block;
@@ -438,6 +432,12 @@ a:visited {
   transition: transform .15s ease-out,
               box-shadow .15s ease-out,
               color .15s ease-out;
+}
+
+.footer a {
+  color: #555;
+  font-size: small;
+  font-weight: normal;
 }
 
 p a:hover,
@@ -454,7 +454,6 @@ li a:focus,
 
 a:visited:hover,
 a:visited:focus {
-  cursor: pointer;
   text-shadow: 0 0 0.1px currentcolor, 0 0 0.1px currentcolor;  /* imitate boldness with shadow to avoid width change when hovering */
 }
 
@@ -519,16 +518,6 @@ a:visited:focus {
 
 .nav-el-2 {
   background-color: white;
-  padding: 0.4em 0.2em;
-  text-align: center;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  position: relative;         /* needed for z-index to take effect */
-  transition: transform .15s ease-out,
-              box-shadow .15s ease-out,
-              color .15s ease-out;
 }
 
 .nav-el-2:hover,
