@@ -1,60 +1,60 @@
 @import url('normalize.css');
 
 :root {
-    --bgcol: rgb(255,255,255);
-    --peach: rgb(255, 229, 180);
-    --coral: rgb(255, 187, 110);
-    --pink: rgb(255, 218, 239);
-    --yellow: rgb(255, 255, 205);
+    --bg-col: rgb(255 255 255);
+    --peach: rgb(255 229 180);
+    --coral: rgb(255 187 110);
+    --pink: rgb(255 218 239);
+    --yellow: rgb(255 255 205);
     --green: rgb(202 252 202);
-    --blue: rgb(186, 234, 240);
+    --blue: rgb(186 234 240);
     --dark-blue: #084298;
-    --purple: rgb(211, 198, 221);
-    --mizuiro: rgb(212, 230, 240);
-    --gray: rgb(200,200,200);
+    --purple: rgb(211 198 221);
+    --mizuiro: rgb(212 230 240);
+    --gray: rgb(200 200 200);
 
-    --tokiwa_lila: rgb(53,40,111);
-    --tokiwa_purp: rgb(108,75,153);
-    --tokiwa_blue: rgb(61,165,218);
-    --tokiwa_cyan: rgb(115,191,184);
+    --tokiwa-lila: rgb(53 40 111);
+    --tokiwa-purp: rgb(108 75 153);
+    --tokiwa-blue: rgb(61 165 218);
+    --tokiwa-cyan: rgb(115 191 184);
 
-    --tokiwa_lila_pale: rgb(53,40,111, 0.25);
-    --tokiwa_purp_pale: rgb(108,75,153, 0.25);
-    --tokiwa_blue_pale: rgb(61,165,218, 0.25);
-    --tokiwa_cyan_pale: rgb(115,191,184, 0.25);
+    --tokiwa-lila-pale: rgb(53 40 111 / 25%);
+    --tokiwa-purp-pale: rgb(108 75 153 / 25%);
+    --tokiwa-blue-pale: rgb(61 165 218 / 25%);
+    --tokiwa-cyan-pale: rgb(115 191 184 / 25%);
 
     /* one place to change the height of every control in the header */
-    --control_height: 1.75em;
+    --control-height: 1.75em;
 }
 
-.mymain {
+.my-main {
   border: 1px solid;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgb(255 255 255 / 60%);
 }
-@media (max-width: 768px) {
-  .mymain {
-    margin: 0px;
+
+@media (width <= 768px) {
+  .my-main {
+    margin: 0;
     padding: 5px;
     border: none;
   }
 }
-@media (min-width: 769px) {
-  .mymain {
-    margin: 40px 40px 0px 40px;  /* top right bot left */
+
+@media (width >= 769px) {
+  .my-main {
+    margin: 40px 40px 0;  /* top right bot left */
   }
 }
 
 header {
   padding: 10px;
-  background: #24FF24;
   background-color: #242424;
   color: white;
-  border-color: #ff0000;
   opacity: 0.8;
 }
 
-header .wrapper{
+header .wrapper {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -65,7 +65,7 @@ header .wrapper{
   flex-shrink: 0;           /* logo keeps its size on narrow screens */
 }
 
-header .wrapper #loginStatus{
+header .wrapper #loginStatus {
   margin-left: auto;        /* only the form moves right, title stays put */
   display: flex;
   align-items: center;
@@ -89,17 +89,16 @@ header form > div {
 
 /* text fields and buttons share height, font size and box sizing so they
    line up exactly; only padding and colours differ */
-.logintext,
-.loginbutton {
-  box-sizing: border-box;
-  height: var(--control_height);
+.login-text,
+.login-button {
+  height: var(--control-height);
   min-width: 7em;
   font-family: inherit;
   font-size: 1rem;
   line-height: 1;
 }
 
-.logintext {
+.login-text {
   color: #333;
   padding: 0 0.5em;
   border-radius: 3px;
@@ -110,7 +109,7 @@ header form > div {
 /* same box for <input type="submit"> and <a>: inline-flex makes width and
    height apply to the link too, align-items centers the label without
    depending on a fixed line-height */
-.loginbutton {
+.login-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -122,59 +121,60 @@ header form > div {
   cursor: pointer;
   color: #a4a;
   border-radius: 1px;
-  background-color: rgb(220, 220, 220);
+  background-color: rgb(220 220 220);
   background-image: linear-gradient(to top left,
-                                    rgba(0, 0, 0, .2),
-                                    rgba(0, 0, 0, .2) 30%,
-                                    rgba(0, 0, 0, 0));
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .4);
+                                    rgb(0 0 0 / 20%),
+                                    rgb(0 0 0 / 20%) 30%,
+                                    rgb(0 0 0 /  0%));
+  box-shadow: 0 1px 2px rgb(0 0 0 / 40%);
+
   /* transform and box-shadow are composited: growing on hover costs no
      reflow and does not shift the neighbouring controls */
   transition: transform .12s ease-out, box-shadow .12s ease-out;
 }
 
-.loginbutton:hover,
-.loginbutton:focus-visible {
-  background-color: rgb(200, 200, 200);
-  color: var(--tokiwa_lila);
+.login-button:hover,
+.login-button:focus-visible {
+  background-color: rgb(200 200 200);
+  color: var(--tokiwa-lila);
   transform: scale(1.08);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, .55);
+  box-shadow: 0 4px 10px rgb(0 0 0 / 55%);
 }
 
 /* override the global a:hover { font-weight: bold } so the label does not
    change width inside the scaled box */
-a.loginbutton:hover,
-a.loginbutton:focus-visible {
+a.login-button:hover,
+a.login-button:focus-visible {
   font-weight: normal;
   text-decoration-line: none;
   text-shadow: none;
 }
 
-.loginbutton:active {
+.login-button:active {
   color: #727;
-  background-color: rgb(185, 185, 185);
+  background-color: rgb(185 185 185);
   transform: scale(1.02);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 50%);
 }
 
 /* respect users who ask for less motion */
 @media (prefers-reduced-motion: reduce) {
-  .loginbutton {
+  .login-button {
     transition: none;
   }
-  .loginbutton:hover,
-  .loginbutton:focus-visible,
-  .loginbutton:active {
+
+  .login-button:hover,
+  .login-button:focus-visible,
+  .login-button:active {
     transform: none;
   }
 }
 
-.navtitle{
+.nav-title {
   display: inline-block;
 }
 
-
-.last-changed{
+.last-changed {
   font-size: small;
   text-align: right;
 }
@@ -186,34 +186,34 @@ a.loginbutton:focus-visible {
   margin: -1px;
   padding: 0;
   overflow: hidden;
-  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
 }
 
 
 h1 {
-  font-family: 'Carme', sans-serif;
-  margin: 0.5em 0 0 0;
+  font-family: Carme, sans-serif;
+  margin: 0.5em 0 0;
   padding: 0;
   line-height: 1.5;
-  background-color: var(--tokiwa_blue_pale) !important;
+  background-color: var(--tokiwa-blue-pale) !important;
 }
 
 h2 {
-  font-family: 'Carme', sans-serif;
+  font-family: Carme, sans-serif;
   margin: 0;
   padding: 0;
   line-height: 1.25;
-  background-color: var(--tokiwa_purp_pale) !important;
+  background-color: var(--tokiwa-purp-pale) !important;
 }
 
 h3 {
-  font-family: 'Carme', sans-serif;
+  font-family: Carme, sans-serif;
   margin: 0;
   padding: 0;
   line-height: 1.25;
-  background-color: var(--tokiwa_cyan_pale) !important;
+  background-color: var(--tokiwa-cyan-pale) !important;
 }
 
 a[target="_blank"] {
@@ -221,27 +221,27 @@ a[target="_blank"] {
 }
 
 a[target="_blank"]::after {
-  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==");
   margin: 0 0.3em;
 }
 
-.d-flex{
+.d-flex {
   display: flex !important;
 }
 
-.justify-content-between{
+.justify-content-between {
   justify-content: space-between;
 }
 
-.justify-content-center{
+.justify-content-center {
   justify-content: center;
 }
 
-.justify-content-end{
+.justify-content-end {
   justify-content: flex-end;
 }
 
-.flex-wrap{
+.flex-wrap {
   flex-wrap: wrap;
 }
 
@@ -250,14 +250,14 @@ a[target="_blank"]::after {
 }
 
 body {
-  font-family: 'Carme', sans-serif;
+  font-family: Carme, sans-serif;
   margin: 0;
   padding: 0;
   line-height: 1.25;
-  background-color: var(--bgcol);
+  background-color: var(--bg-col);
 }
 
-.feeze_gui_blurred {
+.feeze-gui-blurred {
     position: fixed;
     inset: 0;
     background-image: url("/images/feeze_gui_screenshot_large_threads_area.png");
@@ -271,10 +271,7 @@ pre {
   /* make pre work on mobile devices */
   overflow-x: auto;
   background-color: white;
-  padding-top: .75em;
-  padding-bottom: .75em;
-  padding-left: 2em;
-  padding-right: .75em;
+  padding: .75em .75em .75em 2em;
   max-width: 100ch;
 }
 
@@ -283,21 +280,21 @@ td > pre {
   padding: 0;
 }
 
-code{
+code {
   background-color: white;
   padding: 2px 5px;
   display: inline;
   margin: 1px 0;
-  font-family: 'Fira Mono', 'monospace';
+  font-family: 'Fira Mono', monospace;
   font-weight: 600;
 /*  border: 1px dashed rgba(0,0,0,0.3); */
 }
 
-mono{
-  font-family: 'Fira Mono', 'monospace';
+mono {
+  font-family: 'Fira Mono', monospace;
 }
 
-pre > code{
+pre > code {
   border: none;
   font-weight: normal;
   padding: 0;
@@ -360,81 +357,104 @@ img {
   background-color: white !important;
 }
 
-.videoContainer {
+.video-container {
   position: relative;
   text-align: center;
   background-size: contain;
   color: white;
 }
 
-.videoLink {
+.video-link {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.mydir {
+.my-dir {
   color: #80f;
   font-weight: bold;
 }
 
-.innerlink {
+.inner-link {
   color: #00f;
   cursor: pointer;
 }
-.innerlink:hover,
-.innerlink:focus {
+
+.inner-link:hover,
+.inner-link:focus {
   text-decoration-color: #44f;
-  text-shadow: 0 0 0.1px currentColor, 0 0 0.1px currentColor;  /* imitate boldness with shadow to avoid width change when hovering */
+  text-shadow: 0 0 0.1px currentcolor, 0 0 0.1px currentcolor;  /* imitate boldness with shadow to avoid width change when hovering */
   color: #44f;
 }
-.innerlink:active {
+
+.inner-link:active {
   text-decoration-color: #44f;
   color: #44f;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
-p    a,
-li   a {
-    /* within text: underline to make clear this is a link */
+
+p  a,
+li a {
+  /* within text: underline to make clear this is a link */
   text-decoration-line: underline;
 }
+
 a:hover,
 a:focus {
-  cursor: pointer;
-  text-shadow: 0 0 0.1px currentColor, 0 0 0.1px currentColor;  /* imitate boldness with shadow to avoid width change when hovering */
-}
-.navtitle a:hover,
-.navtitle a:focus,
-p    a:hover,
-p    a:focus,
-li   a:hover,
-li   a:focus {
-    /* in navigation title, do not use bold but shadow to keep width constant: */
-  font-weight: normal;
-  text-decoration-line: underline;
-  text-shadow: 0 0 .7px #333, 0 0 .7px #333, 0 0 .7px #333;
+  text-shadow: 0 0 0.1px currentcolor, 0 0 0.1px currentcolor;  /* imitate boldness with shadow to avoid width change when hovering */
 }
 
 a:active {
   text-decoration-color: #44f;
   color: #44f;
-  cursor: pointer;
 }
 
 a:visited {
   color: #006;
 }
 
+/* shared "pill" look for footer links and nav-bar cells */
+.footer a,
+.nav-el-2 {
+  padding: 0.4em 0.2em;
+  text-align: center;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;         /* needed for z-index to take effect */
+  transition: transform .15s ease-out,
+              box-shadow .15s ease-out,
+              color .15s ease-out;
+}
+
+.footer a {
+  color: #555;
+  font-size: small;
+  font-weight: normal;
+}
+
+p a:hover,
+p a:focus,
+li a:hover,
+li a:focus,
+.nav-title a:hover,
+.nav-title a:focus {
+    /* in navigation title, do not use bold but shadow to keep width constant: */
+  font-weight: normal;
+  text-decoration-line: underline;
+  text-shadow: 0 0 .7px #333, 0 0 .7px #333, 0 0 .7px #333;
+}
+
 a:visited:hover,
 a:visited:focus {
-  cursor: pointer;
-  text-shadow: 0 0 0.1px currentColor, 0 0 0.1px currentColor;  /* imitate boldness with shadow to avoid width change when hovering */
+  text-shadow: 0 0 0.1px currentcolor, 0 0 0.1px currentcolor;  /* imitate boldness with shadow to avoid width change when hovering */
 }
 
 .nav {
@@ -450,26 +470,28 @@ a:visited:focus {
   transform: scale(1.3);
   color: #66f;
 }
+
 .nav:active {
   color: #88f;
 }
+
 .nav:visited {
   color: #00d;
   text-decoration-line: none;
 }
+
 .nav:visited:hover,
 .nav:visited:focus {
   color: #44d;
   text-decoration-line: none;
 }
 
-.navdead {
+.nav-dead {
   font-size: 2rem;
   text-decoration-color: #ccc;
   color: #ccc;
   display: inline-block;
 }
-
 
 .d-grid {
   display: grid;
@@ -480,87 +502,75 @@ a:visited:focus {
   max-width: 100%;
 }
 
-.nav_bar
-{
-    /* fixed: columns share the width evenly, content length is ignored */
-    table-layout: fixed;
-    padding: 1em 1em 0 1em;
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0.25em;
+.nav-bar {
+  /* fixed: columns share the width evenly, content length is ignored */
+  table-layout: fixed;
+  padding: 1em 1em 0;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0.25em;
 }
 
-.nav_el
-{
-    background-color: var(--tokiwa_blue_pale) !important;
-    padding: 0;
-    width: auto;
+.nav-el {
+  background-color: var(--tokiwa-blue-pale);
+  padding: 0;
 }
 
-.nav_el2
-{
-    background-color: white;
-    padding: 0.4em 0.2em;
-    text-align: center;
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    position: relative;         /* needed for z-index to take effect */
-    transition: transform .15s ease-out,
-                box-shadow .15s ease-out,
-                color .15s ease-out;
+.nav-el-2 {
+  background-color: white;
 }
 
-.nav_el2:hover,
-.nav_el2:focus-visible {
+.nav-el-2:hover,
+.nav-el-2:focus-visible {
     background-color: white !important;   /* keeps the plate clean */
-    color: var(--tokiwa_blue);
+    color: var(--tokiwa-blue);
     font-weight: inherit;                 /* cancels the global a:hover bold */
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px var(--tokiwa_blue);
+    box-shadow: 0 4px 10px var(--tokiwa-blue);
     z-index: 1;                           /* shadow goes over the neighbours */
 }
 
-.nav_el2:active
-{
-  color: var(--tokiwa_blue);
+.nav-el-2:active {
+  color: var(--tokiwa-blue);
   transform: scale(1.02);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 50%);
 }
 
 /* two equal nav columns instead of seven */
-@media (max-width: 768px) {
-  .nav_bar {
+@media (width <= 768px) {
+  .nav-bar {
     display: block;
     padding: 0.5em;
     border-spacing: 0;
   }
-  .nav_bar tbody {
+
+  .nav-bar tbody {
     display: block;
   }
-  .nav_bar tr {
+
+  .nav-bar tr {
     /* grid items do not stretch into empty tracks */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.25em;
   }
-  .nav_el {
+
+  .nav-el {
     display: block;
     width: auto;
   }
 }
 
 /* header still fits in one row: let the fields share the leftover space */
-@media (min-width: 498px) and (max-width: 768px) {
-  .logintext {
+@media (width >= 498px) and (width <= 768px) {
+  .login-text {
     flex: 1 1 7em;
   }
 }
 
 /* below this width the controls no longer fit side by side: everything
    stacks and is centered */
-@media (max-width: 497px) {
+@media (width <= 497px) {
   header .wrapper {
     justify-content: center;
   }
@@ -578,16 +588,15 @@ a:visited:focus {
     width: 100%;
   }
 
-  .logintext,
-  .loginbutton {
+  .login-text,
+  .login-button {
     min-width: 0;             /* lifts the 7em floor that caused overflow */
     width: 100%;
     max-width: 16em;
   }
 }
 
-.footer
-{
+.footer {
   /* fixed: columns share the width evenly, content length is ignored */
   table-layout: fixed;
 /*  width: 100%; */
@@ -595,26 +604,8 @@ a:visited:focus {
   border-spacing: 0.25em;
 }
 
-.footer a
-{
-  color: #555;
-  font-size: small;
-  font-weight: normal;
-  padding: 0.4em 0.2em;
-  text-align: center;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  position: relative;         /* needed for z-index to take effect */
-  transition: transform .15s ease-out,
-              box-shadow .15s ease-out,
-              color .15s ease-out;
-}
-
 .footer a:hover,
-.foooter a:focus
-{
+.footer a:focus {
   color: black;
   cursor: pointer;
   text-shadow: 0 0 0.5px black, 0 0 0.5px black;  /* imitate boldness with shadow to avoid width change when hovering */

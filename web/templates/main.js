@@ -438,7 +438,7 @@ function initIFrameEmbed()
 
 function setTitle()
 {
-  const navTitle = document.querySelector('.navtitle');
+  const navTitle = document.querySelector('.nav-title');
   const title = navTitle
                   ? navTitle.textContent.replace(/[\r\n]/g, '').split(' • ').reverse().join(' • ')
                   : "Feeze Scheduler Tracer";
