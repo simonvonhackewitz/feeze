@@ -25,7 +25,8 @@
 # The rendering deliberately avoids anti-aliasing and snaps the colours to
 # the colours present in the SVG master to keep small icons crisp.
 #
-# Requires inkscape and ImageMagick 7 ('magick').
+# Requires inkscape and ImageMagick ('magick' from IM7, falling back to
+# 'convert' from IM6, e.g. on Ubuntu 24.04).
 #
 # -----------------------------------------------------------------------
 
@@ -37,6 +38,16 @@ s=$3
 M=1536
 f=$((M/s))
 
+# ImageMagick 7 has the 'magick' command, IM6 (e.g. Ubuntu 24.04) only 'convert'
+if command -v magick >/dev/null; then
+  MAGICK=magick
+elif command -v convert >/dev/null; then
+  MAGICK=convert
+else
+  echo "*** error: neither 'magick' nor 'convert' (ImageMagick) found, please install ImageMagick" >&2
+  exit 1
+fi
+
 # private temporary directory, removed on exit (also safe for parallel make)
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
@@ -46,30 +57,30 @@ palette=$tmp/palette.png
 rgb=$tmp/rgb.png
 mask=$tmp/mask.png
 
-# 1. Master render without anti-aliasing (transparent background kept)
+# 1. Master render (transparent background kept)
 inkscape "$svg" --export-type=png --export-filename="$master" \
-  -w $M -h $M --export-png-antialias=0
+  -w $M -h $M
 
 # 2. Palette from the opaque colours only (no transparent entry)
 args=()
-for c in $(magick "$master" -unique-colors txt:- | grep -oE '#[0-9A-Fa-f]{6}FF' | sed 's/FF$//'); do
+for c in $("$MAGICK" "$master" -unique-colors txt:- | grep -oE '#[0-9A-Fa-f]{6}FF' | sed 's/FF$//'); do
   args+=(xc:"$c")
 done
 if [ ${#args[@]} -eq 0 ]; then
   echo "*** error: no opaque colours found in $svg" >&2
   exit 1
 fi
-magick "${args[@]}" +append "$palette"
+"$MAGICK" "${args[@]}" +append "$palette"
 
 # 3a. Colour: flatten onto black, brightest per block, snap to palette
-magick "$master" -background black -alpha remove -alpha off \
+"$MAGICK" "$master" -background black -alpha remove -alpha off \
   -statistic Maximum ${f}x${f} -filter point -resize ${s}x${s}! \
   +dither -remap "$palette" "$rgb"
 
 # 3b. Alpha: binary mask (opaque if any pixel in the block is opaque)
-magick "$master" -alpha extract \
+"$MAGICK" "$master" -alpha extract \
   -statistic Maximum ${f}x${f} -filter point -resize ${s}x${s}! \
   -threshold 50% "$mask"
 
 # 3c. Combine
-magick "$rgb" "$mask" -alpha off -compose CopyOpacity -composite PNG32:"$out"
+"$MAGICK" "$rgb" "$mask" -alpha off -compose CopyOpacity -composite PNG32:"$out"
